@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Books</h1>
+    <form method="GET">
+        <input type="text" name="query" placeholder="Enter book name or author">
+        <button type="submit">Search</button>
+    </form>
+    <h2>Search Results for "{{ query }}"</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }} by {{ book.author }} {% if book.is_borrowed %}(Borrowed on {{ book.borrowed_date }}){% else %}(Available){% endif %}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

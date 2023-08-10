@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Home</h1>
+    <ul>
+        {% for book in books %}
+            <li>
+                <span>{{ book.name }} by {{ book.author }}</span>
+                {% if book.is_borrowed %}
+                    <span>(Borrowed on {{ book.borrowed_date }})</span>
+                {% else %}
+                    <span>(Available)</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="container">
+        <a class="button" href="{% url 'add_user' %}">Add User</a>
+        <a class="button" href="{% url 'add_book' %}">Add Book</a>
+        <a class="button" href="{% url 'search_books' %}">Search Books</a>
+        <a a class="button" href = "{%url 'assign_book' user_id=user.id %}">Assign</a>
+        <a class="button" href="{% url 'user_list' %}">User List</a>
+    </div>
+</body>
+</html>
